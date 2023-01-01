@@ -1,6 +1,6 @@
 def call() {
     node {
-            common.checkout()
+          common.checkout()
 
             stage('Compile') {
                     echo 'Compile'
