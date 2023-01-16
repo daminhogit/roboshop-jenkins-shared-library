@@ -19,7 +19,7 @@ def compile(appType) {
 
 def codeQuality() {
     stage('Code Quality') {
-        sh 'sonar-scanner -Dsonar.login=admin -Dsonar.password=admin123'
+        sh 'sonar-scanner -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.host.url=http://172.31.58.145:9000'
     }
 }
 
@@ -28,3 +28,5 @@ def release() {
         echo 'Publish A Release'
     }
 }
+
+
