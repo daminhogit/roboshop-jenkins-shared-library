@@ -29,4 +29,8 @@ def release() {
     }
 }
 
+def mail() {
+    mail bcc: '', body: "<h1>Pipeline Failure</h1><br>Project Name: ${COMPONENT}\nURL = ${BUILD_URL}", cc: '', charset: 'UTF-8', from: 'dadesanyar@gmail.com', mimeType: 'text/html', replyTo: 'dadesanyar@gmail.com', subject: "ERROR CI: Component Name - ${COMPONENT}", to: "dami.adesanya@yahoo.com"
+    sh 'exit 1'
+}
 

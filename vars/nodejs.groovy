@@ -1,9 +1,15 @@
 def call() {
     node {
-        common.checkout()
-        common.codeQuality()
-        common.release()
+        try {
+            common.checkout()
+            common.codeQuality()
+            common.release()
+        } catch (e) {
+            common.mail()
+
+
+        }
+
     }
 
 }
-

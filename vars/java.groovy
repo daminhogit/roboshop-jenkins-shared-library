@@ -6,7 +6,7 @@ def call() {
            common.codeQuality()
            common.release()
         } catch (e) {
-            echo 'This will run only if failed'
+            common.mail()
 
 
         }
