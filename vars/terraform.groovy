@@ -4,6 +4,7 @@ def call() {
         options {
             ansiColor('xterm')
         }
+
         stages {
             stage('terraform Plan') {
                 steps {
