@@ -3,9 +3,6 @@ def call() {
 
         agent any
 
-        options {
-            ansiColor('xterm')
-        }
 
         parameters {
             choice(name: 'ENVIRONMENT', choices: ['', 'dev', 'prod'], description: 'Pick Environment')
@@ -13,10 +10,11 @@ def call() {
         }
 
         stages {
+
             stage('Terraform Init') {
                 steps {
                     sh '''
-                    terraform init -backend-config=env/$(ENVIRONMENT)-backend.tfvars
+                      terraform init -backend-config=env/$(ENVIRONMENT)-backend.tfvars
                     '''
                 }
             }
@@ -24,7 +22,7 @@ def call() {
             stage('Terraform Plan') {
                 steps {
                     sh '''
-                    terraform plan -var-file=env/$(ENVIRONMENT).tfvars
+                      terraform plan -var-file=env/$(ENVIRONMENT).tfvars
                     '''
                 }
             }
