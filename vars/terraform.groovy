@@ -11,21 +11,24 @@ def call() {
         }
 
         stages {
-            stage('terraform Init') {
+            stage('Terraform Init') {
                 steps {
                     sh '''
                     terraform init -backend-config=env/$(ENVIRONMENT)-backend.tfvars
                     '''
                 }
             }
+
             stages {
-                stage('terraform Plan') {
+                stage('Terraform Plan') {
                     steps {
                         sh '''
                     terraform plan -var-file=env/$(ENVIRONMENT).tfvars
                     '''
                     }
                 }
-        }
+            }
 
+        }
     }
+}
