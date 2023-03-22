@@ -5,15 +5,26 @@ def call() {
             ansiColor('xterm')
         }
 
+        parameters {
+            choice(name: 'ENVIRONMENT', choices: ['', 'dev', 'prod'], description: 'Pick Environment')
+            choice(name: 'ACTION', choices: ['', 'apply', 'destroy'], description: 'Pick Terraform Action')
+        }
         stages {
-            stage('terraform Plan') {
+            stage('terraform Init') {
                 steps {
                     sh '''
-                    terraform plan
+                    terraform init -backend-config=env/$(ENVIRONMENT)-backend.tfvars
                     '''
                 }
             }
+            stages {
+                stage('terraform Plan') {
+                    steps {
+                        sh '''
+                    terraform plan -var-file=env/$(ENVIRONMENT).tfvars
+                    '''
+                    }
+                }
         }
 
     }
-}
