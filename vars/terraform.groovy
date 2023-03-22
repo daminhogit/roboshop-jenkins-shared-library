@@ -1,6 +1,8 @@
 def call() {
     pipeline {
+
         agent any
+
         options {
             ansiColor('xterm')
         }
@@ -19,16 +21,14 @@ def call() {
                 }
             }
 
-            stages {
-                stage('Terraform Plan') {
-                    steps {
-                        sh '''
+            stage('Terraform Plan') {
+                steps {
+                    sh '''
                     terraform plan -var-file=env/$(ENVIRONMENT).tfvars
                     '''
-                    }
                 }
             }
-
         }
+
     }
 }
